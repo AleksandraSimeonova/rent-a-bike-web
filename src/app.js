@@ -1,4 +1,5 @@
 import page from "./lib/page.js";
+import "./config/firebaseInit.js"
 import layoutView from "./views/layoutView.js";
 import catalogView from "./views/catalogView.js";
 import homeview from "./views/homeview.js";

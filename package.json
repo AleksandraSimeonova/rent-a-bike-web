@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/AleksandraSimeonova/rent-a-bike-web#readme",
   "dependencies": {
+    "firebase": "^12.9.0",
     "lit-html": "^3.3.2",
     "page": "^1.11.6"
   },
