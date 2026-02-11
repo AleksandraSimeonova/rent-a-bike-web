@@ -1,5 +1,7 @@
 
 import { html, render } from '../lib/lit-html.js';
+import { signInWithEmailAndPassword } from "../../node_modules/firebase/firebase-auth.js";
+import { auth } from "../config/firebaseInit.js"
 
 
 const template = (onSubmit) => html`
@@ -56,9 +58,22 @@ export default function (ctx) {
     ctx.render(template(loginFormSubmitHandler))
 }
 
-function loginFormSubmitHandler(e){
+async function loginFormSubmitHandler(e) {
 
     e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+    const { email, password } = Object.fromEntries
+
+    try {
+        
+        const userCredentials = await signInWithEmailAndPassword(auth, email, password);
+        console.log(userCredentials);
+
+    }catch(err){ 
+
+        console.log(err.message)
+    }
 
     console.log('Submit');
 
