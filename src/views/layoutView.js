@@ -23,11 +23,11 @@ const layoutTemplate = (body) => html`
       <div class="hidden lg:flex lg:gap-x-12">
         <a href="/" class="text-sm/6 font-semibold text-gray-900">Home</a>
         <a href="/catalog" class="text-sm/6 font-semibold text-gray-900">Catalog</a>
-        <a href="#" class="text-sm/6 font-semibold text-gray-900">Marketplace</a>
+        <a href="/login" class="text-sm/6 font-semibold text-gray-900">Login</a>
         <a href="#" class="text-sm/6 font-semibold text-gray-900">Company</a>
       </div>
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-        <a href="#" class="text-sm/6 font-semibold text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
+        <a href="/login" class="text-sm/6 font-semibold text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
       </div>
     </nav>
     <el-dialog>
@@ -70,7 +70,7 @@ const layoutTemplate = (body) => html`
         </div>
         
 
-        <footer> All rights reserved &copy; AS </footer>
+        <footer class="footer"> All rights reserved &copy; AS </footer>
 
 `
 
