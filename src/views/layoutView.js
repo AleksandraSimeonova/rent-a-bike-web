@@ -1,8 +1,8 @@
 import { html, render } from '../lib/lit-html.js';
 
-const rootElement = document.getElementById("root");  
+const rootElement = document.getElementById("root");
 
-const layoutTemplate = (body) => html`
+const layoutTemplate = (body, ctx) => html`
 
  <header class="absolute inset-x-0 top-0 z-50">
     <nav aria-label="Global" class="flex items-center justify-between p-6 lg:px-8">
@@ -26,9 +26,21 @@ const layoutTemplate = (body) => html`
         <a href="/login" class="text-sm/6 font-semibold text-gray-900">Login</a>
         <a href="#" class="text-sm/6 font-semibold text-gray-900">Company</a>
       </div>
+
+    ${ctx.isAuthenticated
+    ? html`
+      <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+        <a href="/logout" class="text-sm/6 font-semibold text-gray-900">Log out <span aria-hidden="true">&rarr;</span></a>
+      </div>
+        `
+    : html`
+        
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
         <a href="/login" class="text-sm/6 font-semibold text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
       </div>
+        `
+  }
+
     </nav>
     <el-dialog>
       <dialog id="mobile-menu" class="backdrop:bg-transparent lg:hidden">
@@ -78,12 +90,16 @@ const layoutTemplate = (body) => html`
 
 export default function (ctx, next) {
 
-    ctx.render = (templateResult) => {
+  console.log(ctx.user);
+  console.log(ctx.isAuthenticated);
 
-        render(layoutTemplate(templateResult), rootElement)
 
-    }
+  ctx.render = (templateResult) => {
 
-    next();
+    render(layoutTemplate(templateResult, ctx), rootElement)
+
+  }
+
+  next();
 
 }
