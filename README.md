@@ -7,10 +7,14 @@ SoftUni JS Applications Course Project
 ## Tech Stack
    
    * Vanila JS
-   * Firebase for backend, hosting and authentication
+   * Firebase authentication
+   * Firebase database
+   * Firebase hosting
    * Tailwind CSS with UI  components 
    * Page.js for routing
    * Lit-html for templating
    * Playwrite for e2e testing 
    * Mocha for unit testing
+   * Bundling
+   * Git Source Control with GitHub
 
