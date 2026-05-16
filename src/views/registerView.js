@@ -26,11 +26,14 @@ const template = (onSubmit) => html`
         <div class="flex items-center justify-between">
           <label for="password" class="block text-sm/6 font-medium text-black-100 ">Password</label>
           <div class="text-sm ">
-            <a href="#" class="font-semibold text-indigo-400 hover:text-indigo-300">Forgot password?</a>
+            <a href="#" class="font-semibold text-indigo-400 hover:text-indigo-300">Repeat password</a>
           </div>
         </div>
         <div class="mt-2 rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white ">
           <input id="password" type="password" name="password" required autocomplete="current-password" class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6" />
+        </div>
+          <div class="mt-2 rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white ">
+          <input id="password2" type="password" name="password2" required autocomplete="current-password" class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6" />
         </div>
       </div>
 
