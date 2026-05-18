@@ -23,9 +23,22 @@ const layoutTemplate = (body, ctx) => html`
       <div class="hidden lg:flex lg:gap-x-12">
         <a href="/" class="text-sm/6 font-semibold text-gray-900">Home</a>
         <a href="/catalog" class="text-sm/6 font-semibold text-gray-900">Catalog</a>
-        <a href="/login" class="text-sm/6 font-semibold text-gray-900">Login</a>
+
+       ${ctx.isAuthenticated
+    ? html`
+        <a href="/catalog/addbike" class="text-sm/6 font-semibold text-gray-900">Add your bike</a>
+  
+      
+        `
+    : html`
+        
         <a href="/register" class="text-sm/6 font-semibold text-gray-900">Register</a>
+        `
+  }
+
+
       </div>
+
 
     ${ctx.isAuthenticated
     ? html`
@@ -60,18 +73,20 @@ const layoutTemplate = (body, ctx) => html`
             </div>
             <div class="mt-6 flow-root">
               <div class="-my-6 divide-y divide-gray-500/10">
-                <div class="space-y-2 py-6">
+                <div class="space-y-2 py-6 flex flex-col">
                       <a href="/" class="text-sm/6 font-semibold text-gray-900">Home</a>
                       <a href="/catalog" class="text-sm/6 font-semibold text-gray-900">Catalog</a>
-                      <a href="/register" class="text-sm/6 font-semibold text-gray-900">Register</a>
                 </div>
-                <div class="py-6">
+                <div class="space-y-2 py-6 flex flex-col">
                    ${ctx.isAuthenticated
     ? html`  
+    <a href="/catalog/addbike" class="text-sm/6 font-semibold text-gray-900">Add your bike</a>
         <a href="/logout" class="text-sm/6 font-semibold text-gray-900">Log out <span aria-hidden="true">&rarr;</span></a> 
         `
-    : html`  
+    : html`
+        <a href="/register" class="text-sm/6 font-semibold text-gray-900">Register</a>  
         <a href="/login" class="text-sm/6 font-semibold text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>  
+        
         `
   }
 
