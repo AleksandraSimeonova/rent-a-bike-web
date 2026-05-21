@@ -7,6 +7,7 @@ import loginView from "./views/loginView.js";
 import { authMiddleware } from "./middlewares/authMiddleware.js";
 import logoutView from "./views/logoutView.js";
 import registerView from "./views/registerView.js";
+import createView from "./views/createView.js";
 
 //Set middleWare function
 page(authMiddleware);
@@ -18,6 +19,7 @@ page('/catalog', catalogView);
 page('/login', loginView);
 page('/logout', logoutView);
 page('/register', registerView);
+page('/catalog/addbike', createView);
 
 //Start routing
 page();

@@ -27,11 +27,8 @@ const layoutTemplate = (body, ctx) => html`
        ${ctx.isAuthenticated
     ? html`
         <a href="/catalog/addbike" class="text-sm/6 font-semibold text-gray-900">Add your bike</a>
-  
-      
         `
-    : html`
-        
+    : html`    
         <a href="/register" class="text-sm/6 font-semibold text-gray-900">Register</a>
         `
   }
@@ -80,13 +77,12 @@ const layoutTemplate = (body, ctx) => html`
                 <div class="space-y-2 py-6 flex flex-col">
                    ${ctx.isAuthenticated
     ? html`  
-    <a href="/catalog/addbike" class="text-sm/6 font-semibold text-gray-900">Add your bike</a>
+        <a href="/catalog/addbike" class="text-sm/6 font-semibold text-gray-900">Add your bike</a>
         <a href="/logout" class="text-sm/6 font-semibold text-gray-900">Log out <span aria-hidden="true">&rarr;</span></a> 
         `
     : html`
         <a href="/register" class="text-sm/6 font-semibold text-gray-900">Register</a>  
-        <a href="/login" class="text-sm/6 font-semibold text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>  
-        
+        <a href="/login" class="text-sm/6 font-semibold text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>        
         `
   }
 
