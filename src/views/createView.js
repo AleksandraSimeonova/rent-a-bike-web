@@ -1,4 +1,5 @@
 import { html, render } from "lit-html";
+import bikesApi from "../api/bikesApi.js";
 
 const template = (onSubmit) => html`
 
@@ -155,6 +156,25 @@ const template = (onSubmit) => html`
 
 export default async function(ctx){
 
-    ctx.render(template());
+    ctx.render(template(formSubmitHandler));
+
+}
+
+async function formSubmitHandler(e){
+
+  e.preventDefault();
+
+  const formData = new FormData(e.currentTarget);
+  const bikeData = Object.fromEntries(formData);
+
+  try{
+      await bikesApi.create(catData);
+
+      page.redirect('/cats')
+  }catch(err){
+
+    console.log(err.message);
+    
+  }
 
 }

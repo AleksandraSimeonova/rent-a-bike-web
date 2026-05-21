@@ -13,6 +13,23 @@ async function getAll() {
     return bikes;
 }
 
+async function create(data){
+    
+    const response = await fetch(`${url}.json`, {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+
+    const result = await response.json();
+
+    return result
+}
+
+
 export default {
-    getAll
+    getAll,
+    create
 }
