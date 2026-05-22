@@ -1,6 +1,6 @@
 import { html, render } from "lit-html";
 import bikesApi from "../api/bikesApi.js";
-import { page } from "page";
+import page from '../lib/page.js';
 
 const template = (onSubmit) => html`
 
@@ -171,7 +171,7 @@ async function formSubmitHandler(e){
   try{
       await bikesApi.create(bikeData);
 
-      page.redirect('/bikes')
+      page.redirect('/catalog')
   }catch(err){
 
     console.log(err.message);
