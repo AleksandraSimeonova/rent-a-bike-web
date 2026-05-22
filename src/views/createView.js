@@ -1,5 +1,6 @@
 import { html, render } from "lit-html";
 import bikesApi from "../api/bikesApi.js";
+import { page } from "page";
 
 const template = (onSubmit) => html`
 
@@ -111,16 +112,16 @@ const template = (onSubmit) => html`
         </div>
 
         <div class="col-span-full">
-          <label for="image" class="block text-sm/6 font-medium text-gray-900">
+          <label for="imageUrl" class="block text-sm/6 font-medium text-gray-900">
             Image
           </label>
 
           <div class="mt-2">
             <input
-              id="image"
+              id="imageUrl"
               type="text"
-              name="image"
-              autocomplete="image"
+              name="imageUrl"
+              autocomplete="imageUrl"
               class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
             />
           </div>
@@ -168,9 +169,9 @@ async function formSubmitHandler(e){
   const bikeData = Object.fromEntries(formData);
 
   try{
-      await bikesApi.create(catData);
+      await bikesApi.create(bikeData);
 
-      page.redirect('/cats')
+      page.redirect('/bikes')
   }catch(err){
 
     console.log(err.message);
