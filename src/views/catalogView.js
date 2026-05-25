@@ -11,10 +11,12 @@ const template = (bikes) => html`
 
     ${bikes.map(bike =>html`
       
-      <a href="#" class="group">
+      <a href="/catalog/${bike.id}/details" class="group">
         <img src=${bike.imageUrl} alt="Tall slender porcelain bottle with natural clay textured body and cork stopper." class="aspect-square w-full rounded-lg bg-gray-200 object-cover group-hover:opacity-75 xl:aspect-7/8" />
-        <h3 class="mt-4 text-sm text-gray-700">Brand: ${bike.brand}</h3>
-        <p class="mt-1 text-lg font-medium text-gray-900">Model: ${bike.model}</p>
+        <h3 class="mt-3 text-lg font-medium text-gray-900">Brand: ${bike.brand}</h3>
+        <p class="mt-0 text-xs font-medium text-gray-800">Model:  ${bike.model}</p>
+        <h3 class="mt-1 text-sm text-gray-700">Size: ${bike.size}</h3>
+        <p class="mt-0 text-lg font-medium text-gray-900">Price: ${bike.price} €</p>
       </a>
         
       `)}

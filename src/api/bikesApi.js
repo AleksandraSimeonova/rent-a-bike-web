@@ -13,6 +13,15 @@ async function getAll() {
     return bikes;
 }
 
+async function getOne(bikeId){
+
+    const response = await fetch(`${url}/${bikeId}.json`);
+    const data = await response.json();
+
+    return data
+
+}
+
 async function create(data){
     
     const response = await fetch(`${url}.json`, {
@@ -31,5 +40,6 @@ async function create(data){
 
 export default {
     getAll,
+    getOne,
     create
 }

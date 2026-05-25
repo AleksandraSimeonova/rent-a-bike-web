@@ -6,7 +6,7 @@ const template = (onSubmit) => html`
 
 <div  class="min-h-screen flex items-center justify-center p-10">
 <form  @submit=${onSubmit}>
-  <div class="space-y-12 ">
+  <div class="space-y-2 ">
 
     <div class="border-b border-gray-900/10 pb-12">
       <h2 class="text-base/7 font-semibold text-gray-900">
@@ -23,11 +23,11 @@ const template = (onSubmit) => html`
         Personal Information
       </h2>
 
-      <p class="mt-1 text-sm/6 text-gray-600">
+      <p class="mt-1 text-sm/3 text-gray-600">
         Use a permanent address where you can receive mail.
       </p>
 
-      <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+      <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-6">
 
         <div class="sm:col-span-3">
           <label for="brand" class="block text-sm/6 font-medium text-gray-900">
@@ -46,7 +46,7 @@ const template = (onSubmit) => html`
         </div>
 
         <div class="sm:col-span-3">
-          <label for="model" class="block text-sm/6 font-medium text-gray-900">
+          <label for="model" class="block text-sm/1 font-medium text-gray-900">
             Model
           </label>
 

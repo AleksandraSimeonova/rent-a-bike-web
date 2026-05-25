@@ -14,8 +14,8 @@ const template = () => html`
                     <div class="hidden sm:mb-8 sm:flex sm:justify-center">
                         <div
                             class="relative rounded-full px-3 py-1 text-sm/6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                            Announcing our next round of funding. <a href="#" class="font-semibold text-indigo-600"><span
-                                aria-hidden="true" class="absolute inset-0"></span>Read more <span
+                            Adventure starts here. ---   <a href="/catalog" class="font-semibold text-indigo-600"><span
+                                aria-hidden="true" class="absolute inset-0"></span> Built for speed. Made for freedom. <span
                                     aria-hidden="true">&rarr;</span></a>
                         </div>
                     </div>
@@ -28,10 +28,10 @@ const template = () => html`
                             Take a bike and grab your new adventure.
                         </p>
                         <div class="mt-10 flex items-center justify-center gap-x-6">
-                            <a href="#"
+                            <a href="/catalog"
                                 class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Get
                                 started</a>
-                            <a href="#" class="text-sm/6 font-semibold text-gray-900">Learn more <span
+                            <a href="/information" class="text-sm/6 font-semibold text-gray-900">Learn more <span
                                 aria-hidden="true">→</span></a>
                         </div>
                     </div>

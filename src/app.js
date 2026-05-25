@@ -8,6 +8,7 @@ import { authMiddleware } from "./middlewares/authMiddleware.js";
 import logoutView from "./views/logoutView.js";
 import registerView from "./views/registerView.js";
 import createView from "./views/createView.js";
+import detailsView from "./views/detailsView.js";
 
 //Set middleWare function
 page(authMiddleware);
@@ -16,6 +17,7 @@ page(layoutView);
 //Set up routes
 page('/', homeview);
 page('/catalog', catalogView);
+page('/catalog/:bikeId/details', detailsView);
 page('/login', loginView);
 page('/logout', logoutView);
 page('/register', registerView);
