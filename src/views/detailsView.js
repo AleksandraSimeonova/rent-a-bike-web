@@ -2,8 +2,9 @@
  import bikesApi from "../api/bikesApi.js";
  import page from '../lib/page.js';
 import { log } from "firebase/firestore/pipelines";
+import rentApi from "../api/rentApi.js";
 
- const template = (bike, onRent) => html`
+ const template = (bike, isRent, onRent) => html`
  <div class="bg-white">
   <div class="pt-6">
     <!-- Image gallery -->
@@ -80,6 +81,12 @@ import { log } from "firebase/firestore/pipelines";
               </div>
             </fieldset>
           </div>
+          
+          ${isRent
+            ? html`<button type="button" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-red hover:bg-indigo-700 ">Not available</button>`
+            : html`<button type="button" @click=${onRent} class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden">Rent</button>`
+          }
+          
 
           <button type="button" @click=${onRent} class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden">Rent</button>
         </form>
@@ -130,14 +137,21 @@ import { log } from "firebase/firestore/pipelines";
 export default async function(ctx){
 
    const bike = await bikesApi.getOne(ctx.params.bikeId);
-   console.log(bike);
+   const rent = await rentApi.getOne(ctx.params.bikeId);
+   const isRent = !!rent.userId;
+   console.log(rent);
+   
    
 
-    ctx.render(template(bike, rentClickHandler));
+    ctx.render(template(bike, isRent, rentClickHandler.bind(ctx)));
 }
 
-function rentClickHandler(){
+async function rentClickHandler(){
  
+  const userId = this.user.uid;
+  const bikeId = this.params.bikeId;
+
+  const result = await rentApi.rent(bikeId, userId)
 
        console.log('rent');
 }
