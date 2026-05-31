@@ -8,7 +8,7 @@ async function getAll() {
 
     const bikes = Object.keys(result).map(id => ({id, ...result[id]}));
     
-    console.log(bikes);
+    ///console.log(bikes);
 
     return bikes;
 }

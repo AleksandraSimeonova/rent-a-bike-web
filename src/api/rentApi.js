@@ -23,9 +23,9 @@ export default {
         const response = await fetch(`${url}.json?equalTo="${bikeId}"&orderBy="bikeId"`);
         const result = await response.json();
 
-         console.log(`object values result`, Object.values(result));
+         console.log(`object values result`, Object.values(result).at(0));
          
-        return result;
+        return Object.values(result).at(0);
     }
 
 }

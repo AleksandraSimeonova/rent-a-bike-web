@@ -1,7 +1,7 @@
- import { html, render } from "lit-html";
+ import { html } from "lit-html";
+ import {page} from "page";
+
  import bikesApi from "../api/bikesApi.js";
- import page from '../lib/page.js';
-import { log } from "firebase/firestore/pipelines";
 import rentApi from "../api/rentApi.js";
 
  const template = (bike, isRent, onRent) => html`
@@ -87,9 +87,7 @@ import rentApi from "../api/rentApi.js";
             : html`<button type="button" @click=${onRent} class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden">Rent</button>`
           }
           
-
-          <button type="button" @click=${onRent} class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden">Rent</button>
-        </form>
+       </form>
       </div>
 
       <div class="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pt-6 lg:pr-8 lg:pb-16">
@@ -138,10 +136,8 @@ export default async function(ctx){
 
    const bike = await bikesApi.getOne(ctx.params.bikeId);
    const rent = await rentApi.getOne(ctx.params.bikeId);
-   const isRent = !!rent.userId;
-   console.log(rent);
    
-   
+const isRent = rent ? !!rent.userId : false;
 
     ctx.render(template(bike, isRent, rentClickHandler.bind(ctx)));
 }
@@ -153,5 +149,5 @@ async function rentClickHandler(){
 
   const result = await rentApi.rent(bikeId, userId)
 
-       console.log('rent');
+  this.page.redirect(`/catalog/${bikeId}/details`);
 }
