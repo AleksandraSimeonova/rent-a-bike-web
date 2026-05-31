@@ -61,6 +61,24 @@ const template = (onSubmit) => html`
           </div>
         </div>
 
+
+          <div class="sm:col-span-3">
+          <label for="details" class="block text-sm/6 font-medium text-gray-900">
+            Details
+          </label>
+
+          <div class="mt-2">
+            <input
+              id="details"
+              type="text"
+              name="details"
+              autocomplete="details"
+              class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+            />
+          </div>
+        </div>
+        
+
         <div class="sm:col-span-4">
           <label for="price" class="block text-sm/6 font-medium text-gray-900">
             Price
