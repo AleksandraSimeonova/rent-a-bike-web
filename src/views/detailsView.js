@@ -4,7 +4,7 @@
  import bikesApi from "../api/bikesApi.js";
 import rentApi from "../api/rentApi.js";
 
- const template = (bike, isRent, userOwner, onRent) => html`
+ const template = (bike, isRent, idRent, userOwner, onRent) => html`
  <div class="bg-white">
   <div class="pt-6">
     <!-- Image gallery -->
@@ -88,7 +88,8 @@ import rentApi from "../api/rentApi.js";
           }
 
           ${userOwner
-            ? html`<button type="button" class="mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-green-400 px-8 py-3 text-base font-medium text-red hover:bg-green-300 ">Return</button>`
+            ? html`<button type="button" 
+             class="mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-green-400 px-8 py-3 text-base font-medium text-red hover:bg-green-300 ">Return</button>`
             : isRent ? html`<span>maybe next time</span>` : html``
           }
           
@@ -142,12 +143,13 @@ export default async function(ctx){
    console.log('ctx', ctx.user.uid);
 
    const userOwner = rent ?  rent.userId=== ctx.user.uid : false;
-   console.log('userOwner', userOwner);
+   console.log('userOwner', userOwner, rent ? rent : 'no rent');
 
    
    const isRent = rent ? !!rent.userId : false;
+   const idRent = rent ? rent.id : null;
 
-   ctx.render(template(bike, isRent, userOwner, rentClickHandler.bind(ctx)));
+   ctx.render(template(bike, isRent, idRent, userOwner, rentClickHandler.bind(ctx)));
 
 }
 
