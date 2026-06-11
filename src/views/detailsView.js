@@ -160,3 +160,9 @@ async function rentClickHandler(){
 
   this.page.redirect(`/catalog/${bikeId}/details`);
 }
+
+async function unrentClickHandler(){
+
+
+  
+}
