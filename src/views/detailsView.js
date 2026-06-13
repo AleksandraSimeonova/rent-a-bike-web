@@ -1,10 +1,10 @@
- import { html } from "lit-html";
- import {page} from "page";
+import { html } from "lit-html";
+import { page } from "page";
 
- import bikesApi from "../api/bikesApi.js";
+import bikesApi from "../api/bikesApi.js";
 import rentApi from "../api/rentApi.js";
 
- const template = (bike, isRent, idRent, userOwner, onRent) => html`
+const template = (bike, isRent, idRent, userOwner, onRent, unRent) => html`
  <div class="bg-white">
   <div class="pt-6">
     <!-- Image gallery -->
@@ -83,15 +83,15 @@ import rentApi from "../api/rentApi.js";
           </div>
           
           ${isRent
-            ? html`<button type="button" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-red-500 px-8 py-3 text-base font-medium text-red ">Not available</button>`
-            : html`<button type="button" @click=${onRent} class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden">Rent</button>`
-          }
+    ? html`<button type="button" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-red-500 px-8 py-3 text-base font-medium text-red ">Not available</button>`
+    : html`<button type="button" @click=${onRent} class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden">Rent</button>`
+  }
 
           ${userOwner
-            ? html`<button type="button" 
+    ? html`<button type="button"  @click=${unRent} 
              class="mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-green-400 px-8 py-3 text-base font-medium text-red hover:bg-green-300 ">Return</button>`
-            : isRent ? html`<span>maybe next time</span>` : html``
-          }
+    : isRent ? html`<span>maybe next time</span>` : html``
+  }
           
        </form>
       </div>
@@ -135,26 +135,26 @@ import rentApi from "../api/rentApi.js";
  `;
 
 
-export default async function(ctx){
+export default async function (ctx) {
 
-   const bike = await bikesApi.getOne(ctx.params.bikeId);
-   const rent = await rentApi.getOne(ctx.params.bikeId);
+  const bike = await bikesApi.getOne(ctx.params.bikeId);
+  const rent = await rentApi.getOne(ctx.params.bikeId);
 
-   console.log('ctx', ctx.user.uid);
+  console.log('ctx', ctx.user?.uid);
 
-   const userOwner = rent ?  rent.userId=== ctx.user.uid : false;
-   console.log('userOwner', userOwner, rent ? rent : 'no rent');
+  const userOwner = rent ? rent.userId === ctx.user.uid : false;
+  console.log('userOwner', userOwner, rent ? rent : 'no rent');
 
-   
-   const isRent = rent ? !!rent.userId : false;
-   const idRent = rent ? rent.id : null;
 
-   ctx.render(template(bike, isRent, idRent, userOwner, rentClickHandler.bind(ctx)));
+  const isRent = rent ? !!rent.userId : false;
+  const idRent = rent ? rent.id : null;
+
+  ctx.render(template(bike, isRent, idRent, userOwner, rentClickHandler.bind(ctx), unrentClickHandler.bind(ctx, idRent)));
 
 }
 
-async function rentClickHandler(){
- 
+async function rentClickHandler() {
+
   const userId = this.user.uid;
   const bikeId = this.params.bikeId;
 
@@ -163,8 +163,12 @@ async function rentClickHandler(){
   this.page.redirect(`/catalog/${bikeId}/details`);
 }
 
-async function unrentClickHandler(){
+async function unrentClickHandler(rentId) {
 
 
-  
+  const bikeId = this.params.bikeId;
+
+  const result = await rentApi.deleteOne(rentId);
+  this.page.redirect(`/catalog/${bikeId}/details`);
+
 }
