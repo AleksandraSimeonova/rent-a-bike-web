@@ -10,6 +10,7 @@ import registerView from "./views/registerView.js";
 import createView from "./views/createView.js";
 import detailsView from "./views/detailsView.js";
 import informationView from "./views/informationView.js";
+import rentedBikesView from "./views/rentedBikesView.js";
 
 //Set middleWare function
 page(authMiddleware);
@@ -24,6 +25,7 @@ page('/logout', logoutView);
 page('/register', registerView);
 page('/catalog/addbike', createView);
 page('/information', informationView);
+page('/catalog/myrentals', rentedBikesView);
 
 //Start routing
 page();

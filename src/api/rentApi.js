@@ -46,6 +46,18 @@ export default {
         if (!response.ok) {
             throw new Error('Failed to delete rent');
         }
-    }
+    },
+    async getAll(userId) {
+
+        const response = await fetch(`${url}.json?equalTo="${userId}"&orderBy="userId"`);
+        const result = await response.json();
+        
+        if (!result) {
+            return [];
+        }
+
+        return Object.values(result).map(r => r.bikeId)
+
+    },
 
 }

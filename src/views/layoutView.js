@@ -27,6 +27,7 @@ const layoutTemplate = (body, ctx) => html`
        ${ctx.isAuthenticated
     ? html`
         <a href="/catalog/addbike" class="text-sm/6 font-semibold text-gray-900">Add your bike</a>
+        <a href="/catalog/myrentals" class="text-sm/6 font-semibold text-gray-900">My Rentals</a>
         `
     : html`    
         <a href="/register" class="text-sm/6 font-semibold text-gray-900">Register</a>
@@ -78,6 +79,7 @@ const layoutTemplate = (body, ctx) => html`
                    ${ctx.isAuthenticated
     ? html`  
         <a href="/catalog/addbike" onclick="document.getElementById('mobile-menu').close()" class="text-sm/6 font-semibold text-gray-900">Add your bike</a>
+        <a href="/catalog/myrentals" onclick="document.getElementById('mobile-menu').close()" class="text-sm/6 font-semibold text-gray-900">My Rentals</a>
         <a href="/logout" onclick="document.getElementById('mobile-menu').close()" class="text-sm/6 font-semibold text-gray-900">Log out <span aria-hidden="true">&rarr;</span></a> 
         `
     : html`
