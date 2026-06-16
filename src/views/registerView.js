@@ -15,26 +15,67 @@ const template = (onSubmit) => html`
  
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
     <form @submit=${onSubmit} action="#" method="POST" class="space-y-6">
-      <div>
-        <label for="email" class=" block text-sm/6 font-medium text-gray-900 ">Email address</label>
-        <div class="mt-2 rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white ">
-          <input id="email" type="email" name="email" required autocomplete="email" class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6" />
+         <div>
+             <label for="email" class="block text-sm font-medium text-gray-700">
+               Email address
+             </label>
+
+             <div class="mt-2">
+               <input
+                 id="email"
+                 type="email"
+                 name="email"
+                 required
+                 autocomplete="email"
+                 class="block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-gray-900 shadow-sm
+                        placeholder:text-gray-400
+                        focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none
+                        sm:text-sm"
+               />
+             </div>
         </div>
-      </div>
 
       <div>
-        <div class="flex items-center justify-between">
-          <label for="password" class="block text-sm/6 font-medium text-black-100 ">Password</label>
-          <div class="text-sm ">
-            <a href="#" class="font-semibold text-indigo-400 hover:text-indigo-300">Repeat password</a>
-          </div>
-        </div>
-        <div class="mt-2 rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white ">
-          <input id="password" type="password" name="password" required autocomplete="current-password" class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6" />
-        </div>
-          <div class="mt-2 rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white ">
-          <input id="password2" type="password" name="password2" required autocomplete="current-password" class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6" />
-        </div>
+              <div>
+                <label for="password" class="block text-sm font-medium text-gray-700">
+                  Password
+                </label>
+              
+                <div class="mt-1">
+                  <input
+                    id="password"
+                    type="password"
+                    name="password"
+                    required
+                    autocomplete="new-password"
+                    class="block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-gray-900 shadow-sm
+                           placeholder:text-gray-400
+                           focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none
+                           sm:text-sm"
+                  />
+                </div>
+              </div>
+
+
+                    <div>
+                      <label for="password2" class="block mt-1 text-sm font-medium text-gray-700">
+                        Repeat password
+                      </label>
+                    
+                      <div class="mt-1">
+                        <input
+                          id="password2"
+                          type="password"
+                          name="password2"
+                          required
+                          autocomplete="new-password"
+                          class="block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-gray-900 shadow-sm
+                                 placeholder:text-gray-400
+                                 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none
+                                 sm:text-sm"
+                        />
+                      </div>
+                    </div>
       </div>
 
       <div>
@@ -42,10 +83,6 @@ const template = (onSubmit) => html`
       </div>
     </form>
 
-    <p class="mt-10 text-center text-sm/6 text-gray-400">
-      Not a member?
-      <a href="#" class="font-semibold text-indigo-400 hover:text-indigo-300">Start a 14 day free trial</a>
-    </p>
   </div>
 </div>`
 

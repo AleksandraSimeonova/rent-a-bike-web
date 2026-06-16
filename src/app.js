@@ -11,6 +11,7 @@ import createView from "./views/createView.js";
 import detailsView from "./views/detailsView.js";
 import informationView from "./views/informationView.js";
 import rentedBikesView from "./views/rentedBikesView.js";
+import contactView from "./views/contactView.js";
 
 //Set middleWare function
 page(authMiddleware);
@@ -26,6 +27,7 @@ page('/register', registerView);
 page('/catalog/addbike', createView);
 page('/information', informationView);
 page('/catalog/myrentals', rentedBikesView);
+page('/contact', contactView);
 
 //Start routing
 page();

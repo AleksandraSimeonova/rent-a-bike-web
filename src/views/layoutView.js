@@ -118,12 +118,10 @@ const layoutTemplate = (body, ctx) => html`
         <a href="/information" class="font-medium text-gray-500 hover:text-black transition-all">
             About
         </a>
-        <a href="/contacts" class="font-medium text-gray-500 hover:text-black transition-all">
+        <a href="/contact" class="font-medium text-gray-500 hover:text-black transition-all">
             Contact
         </a>
-        <a href="/" class="font-medium text-gray-500 hover:text-black transition-all">
-            Help
-        </a>
+
     </div>
     <div class="flex items-center gap-4 mt-8 text-indigo-500">
         <a href="https://www.facebook.com/" class="hover:-translate-y-0.5 transition-all duration-300">

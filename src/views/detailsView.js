@@ -26,12 +26,13 @@ const template = (bike, isRent, userOwner, onRent, unRent, isLoggedIn) => html`
         <h2 class="sr-only">Product information</h2>
         <p class="text-3xl tracking-tight text-gray-900">$${bike.price}</p>
 
-        <!-- Reviews -->
+        <!-- Reviews
+         
         <div class="mt-6">
           <h3 class="sr-only">Reviews</h3>
           <div class="flex items-center">
             <div class="flex items-center">
-              <!-- Active: "text-gray-900", Default: "text-gray-200" -->
+             
               <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-5 shrink-0 text-gray-900">
                 <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z" clip-rule="evenodd" fill-rule="evenodd" />
               </svg>
@@ -51,7 +52,7 @@ const template = (bike, isRent, userOwner, onRent, unRent, isLoggedIn) => html`
             <p class="sr-only">4 out of 5 stars</p>
             <a href="#" class="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">117 reviews</a>
           </div>
-        </div>
+        </div> -->  
 
         <form class="mt-10">
 
@@ -110,15 +111,6 @@ const template = (bike, isRent, userOwner, onRent, unRent, isLoggedIn) => html`
           </div>
         </div>
 
-        <div class="mt-10">
-          <h3 class="text-sm font-medium text-gray-900">Highlights</h3>
-
-          <div class="mt-4">
-            <ul role="list" class="list-disc space-y-2 pl-4 text-sm">
-              <li class="text-gray-400"><span class="text-gray-600">${bike.highlights}</span></li>
-            </ul>
-          </div>
-        </div>
 
         <div class="mt-10">
           <h2 class="text-sm font-medium text-gray-900">Details</h2>
