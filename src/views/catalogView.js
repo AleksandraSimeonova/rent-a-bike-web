@@ -35,8 +35,6 @@ export default async function (ctx) {
 
     const bikes = await bikesApi.getAll();
 
-    
-
     ctx.render(template(bikes));
 
   } catch (err) {

@@ -23,6 +23,12 @@ export default {
         const response = await fetch(`${url}.json?equalTo="${bikeId}"&orderBy="bikeId"`);
         const result = await response.json();
 
+
+    if (!response.ok) {
+        console.error(result);
+        return null;
+    }
+
         if (!result || Object.keys(result).length === 0) {
             return null
         }

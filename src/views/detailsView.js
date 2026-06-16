@@ -4,7 +4,7 @@ import { page } from "page";
 import bikesApi from "../api/bikesApi.js";
 import rentApi from "../api/rentApi.js";
 
-const template = (bike, isRent, idRent, userOwner, onRent, unRent) => html`
+const template = (bike, isRent, userOwner, onRent, unRent, isLoggedIn) => html`
  <div class="bg-white">
   <div class="pt-6">
     <!-- Image gallery -->
@@ -69,31 +69,34 @@ const template = (bike, isRent, idRent, userOwner, onRent, unRent) => html`
                   <input type="radio" name="size" checked class="absolute inset-0 appearance-none focus:outline-none disabled:cursor-not-allowed" />
                   <span class="text-sm font-medium text-gray-900 uppercase group-has-checked:text-white">${bike.size}</span>
                 </label>
-                 <!--
-                <label aria-label="M" class="group relative flex items-center justify-center rounded-md border border-gray-300 bg-white p-3 has-checked:border-indigo-600 has-checked:bg-indigo-600 has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-indigo-600 has-disabled:border-gray-400 has-disabled:bg-gray-200 has-disabled:opacity-25">
-                  <input type="radio" name="size" class="absolute inset-0 appearance-none focus:outline-none disabled:cursor-not-allowed" />
-                  <span class="text-sm font-medium text-gray-900 uppercase group-has-checked:text-white">M</span>
-                </label>
-                <label aria-label="L" class="group relative flex items-center justify-center rounded-md border border-gray-300 bg-white p-3 has-checked:border-indigo-600 has-checked:bg-indigo-600 has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-indigo-600 has-disabled:border-gray-400 has-disabled:bg-gray-200 has-disabled:opacity-25">
-                  <input type="radio" name="size" class="absolute inset-0 appearance-none focus:outline-none disabled:cursor-not-allowed" />
-                  <span class="text-sm font-medium text-gray-900 uppercase group-has-checked:text-white">L</span>
-                </label>
-                 -->
               </div>
             </fieldset>
           </div>
-          
-          ${isRent
-    ? html`<button type="button" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-red-500 px-8 py-3 text-base font-medium text-red ">Not available</button>`
-    : html`<button type="button" @click=${onRent} class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden">Rent</button>`
-  }
+          ${isLoggedIn
+    ? html`
+        ${isRent
+        ? html`<button type="button" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-red-500 px-8 py-3 text-base font-medium text-red ">Not available</button>`
+        : html`<button type="button" @click=${onRent} class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden">Rent</button>`
+      }
 
           ${userOwner
-    ? html`<button type="button"  @click=${unRent} 
+        ? html`<button type="button"  @click=${unRent} 
              class="mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-green-400 px-8 py-3 text-base font-medium text-red hover:bg-green-300 ">Return</button>`
-    : isRent ? html`<span>maybe next time</span>` : html``
+        : isRent ? html`<span>maybe next time</span>` : html``
+      }
+        
+             
+             `
+    : html`
+    <div class="mt-6 rounded-xl bg-gray-50 p-4 text-center shadow-sm">
+          <p class="text-gray-600">
+              Please <span class="font-semibold text-indigo-600">log in</span> to rent this bike.
+          </p>
+    </div>`
+                  
+
   }
-          
+       
        </form>
       </div>
 
@@ -127,12 +130,7 @@ const template = (bike, isRent, idRent, userOwner, onRent, unRent) => html`
       </div>
     </div>
   </div>
-</div>
-
- 
- 
- 
- 
+</div> 
  `;
 
 
@@ -141,22 +139,24 @@ export default async function (ctx) {
   const bike = await bikesApi.getOne(ctx.params.bikeId);
   const rent = await rentApi.getOne(ctx.params.bikeId);
 
-  console.log('ctx', ctx.user?.uid);
+  ///console.log('ctx', ctx.user?.uid);
+  const isLoggedIn = !!ctx.user;
+  console.log(`is logged user`, isLoggedIn);
 
   const userOwner = rent ? rent.userId === ctx.user?.uid : false;
-  console.log('userOwner', userOwner, rent ? rent : 'no rent');
+  ///console.log('userOwner', userOwner, rent ? rent : 'no rent');
 
 
   const isRent = rent ? !!rent.userId : false;
   const idRent = rent ? rent.id : null;
 
-  ctx.render(template(bike, isRent, idRent, userOwner, rentClickHandler.bind(ctx), unrentClickHandler.bind(ctx, idRent)));
+  ctx.render(template(bike, isRent, userOwner, rentClickHandler.bind(ctx), unrentClickHandler.bind(ctx, idRent), isLoggedIn));
 
 }
 
 async function rentClickHandler() {
 
-  const userId = this.user.uid;
+  const userId = this.user?.uid;
   const bikeId = this.params.bikeId;
 
   const result = await rentApi.rent(bikeId, userId)
