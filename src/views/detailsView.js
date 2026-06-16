@@ -18,7 +18,7 @@ const template = (bike, isRent, userOwner, onRent, unRent, isLoggedIn) => html`
     <!-- Product info -->
     <div class="mx-auto  mt-2 max-w-2xl px-4 pt-10 pb-16 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto_auto_1fr] lg:gap-x-8 lg:px-8 lg:pt-16 lg:pb-24">
       <div class="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-        <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">${bike.brand}</h1>
+        <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">Brand:   ${bike.brand}</h1>
       </div>
 
       <!-- Options -->
@@ -76,14 +76,24 @@ const template = (bike, isRent, userOwner, onRent, unRent, isLoggedIn) => html`
           ${isLoggedIn
     ? html`
         ${isRent
-        ? html`<button type="button" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-red-500 px-8 py-3 text-base font-medium text-red ">Not available</button>`
+        ? html`
+                <div class="mt-10 flex w-full items-center justify-center rounded-xl bg-red-20 px-6 py-4 ring-1 ring-purple-200">
+                  <span class="text-sm font-semibold text-pink-600 uppercase tracking-wide">
+                    Not available
+                  </span>
+                </div>`
         : html`<button type="button" @click=${onRent} class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden">Rent</button>`
       }
 
           ${userOwner
         ? html`<button type="button"  @click=${unRent} 
              class="mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-green-400 px-8 py-3 text-base font-medium text-red hover:bg-green-300 ">Return</button>`
-        : isRent ? html`<span>maybe next time</span>` : html``
+        : isRent ? html`
+                        <div class="mt-8 flex w-full items-center justify-center rounded-xl bg-gray-0 px-6 py-4 ring-1 ring-purple-100">
+                          <span class="text-sm font-medium text-gray-600 ">
+                            Rented by someone else
+                          </span>
+                        </div>` : html``
       }
         
              
@@ -107,7 +117,7 @@ const template = (bike, isRent, userOwner, onRent, unRent, isLoggedIn) => html`
           <h3 class="sr-only">Description</h3>
 
           <div class="space-y-6">
-            <p class="text-base text-gray-900">${bike.model}</p>
+            <p class="text-base text-gray-900">Model: ${bike.model}</p>
           </div>
         </div>
 

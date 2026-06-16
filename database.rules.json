@@ -1,7 +1,13 @@
 {
-  /* Visit https://firebase.google.com/docs/database/security to learn more about security rules. */
   "rules": {
-    ".read": true,
-    ".write": true
+    "bikes": {
+      ".read": true,
+      ".write": true
+    },
+    "rents": {
+      ".read": true,
+      ".write": true,
+      ".indexOn": ["bikeId", "userId"]
+    }
   }
 }
